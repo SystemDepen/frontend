@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <!-- Imagem do logo -->
+    <a class="navbar-brand" href="#">
+      <img src="/img/logo.png" alt="Logo" class="logo_header" />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse d-flex justify-content-around" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link opcao" aria-current="page" href="#">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link opcao" href="/contatos">Contato</a>
+        </li>
+        <li *ngIf="userLogged" class="nav-item">
+          <a class="nav-link opcao" href="/send-form">Documentos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link opcao" href="/sobre">Sobre</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Botões de autenticação -->
+    <a *ngIf="!userLogged" href="/sign-in" class="btn btn-primary botao d-flex flex-row" style="background-color: rgb(157, 157, 156);">
+      Entrar
+      <img src="/img/entar.png" alt="Logo" class="entrar" />
+    </a>
+    <a *ngIf="!userLogged" href="/sign-up" class="register btn btn-primary botao d-flex flex-row" style="background-color: rgb(157, 157, 156);">
+      Cadastrar
+      <img src="/img/entar.png" alt="Logo" class="entrar" />
+    </a>
+
+        <!-- Botão Solicitações - apenas para administradores -->
+        <a *ngIf="isAdmin" 
+          href="/tabela-solicitantes" 
+          class="solicitacoes btn btn-primary botao " 
+          style="background-color: rgb(134, 181, 86); color: rgb(255, 255, 255);">
+         Solicitações
+       </a>
+
+    <div class="botoes d-flex align-items-center">
+
+      <!-- Botão de logout -->
+      <button *ngIf="userLogged" class="btn btn-danger botao logout" (click)="onLogout()">Logout</button>
+
+      <!-- Nome do usuário logado -->
+      <span *ngIf="userLogged" 
+            class="user btn btn-primary botao d-flex flex-row userColor" 
+            style="background-color: rgb(49, 108, 218); color: rgb(255, 255, 255);">
+        {{ user }}
+      </span>
+    </div>
+  </div>
+</nav>

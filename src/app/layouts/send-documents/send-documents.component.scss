@@ -1,0 +1,18 @@
+html, body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 650px;
+  width: 100%;
+  padding: 5%;
+  background-color: rgb(217, 217, 217);
+  box-sizing: border-box;
+  text-align: center;
+  margin-top: 80px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px rgb(119, 119, 119);
+}

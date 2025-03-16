@@ -1,0 +1,31 @@
+<div>
+
+  <div style="justify-content: center; margin-left: 622px;">
+  <h3 class="mtop mleft">Solicitações Pendentes</h3>
+  </div>
+
+  <app-search-bar (search)="onSearch($event)"></app-search-bar>   
+
+  <table class="table table-striped mt-2">
+    <thead>
+      <tr>
+        <th scope="col">Nome do Solicitante</th>
+        <th scope="col">Protocolo</th>
+        <th scope="col">Data de Envio</th>
+        <th scope="col">Documentos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let protocol of filteredProtocols">
+        <td class="elemento_tabela">{{ protocol.user.name }}</td>
+        <td  class="elemento_tabela">{{ protocol.id }}</td>
+        <td class="elemento_tabela">{{ formatDate(protocol.created_at) }}</td>
+        <td class="elemento_tabela">
+          <button class="btn btn-primary" style="background-color: rgb(134, 181, 86);" (click)="handleProtocol(protocol)">
+            Detalhes
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

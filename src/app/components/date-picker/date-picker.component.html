@@ -1,0 +1,32 @@
+<form [formGroup]="form">
+  <div class="mb-3">
+    <label for="birthDate" class="form-label">Data de Nascimento</label>
+    <input
+      mdbInput
+      type="date"
+      class="form-control"
+      id="birthDate"
+      formControlName="birthDate"
+      [max]="maxDate"
+      required
+    />
+    <div NgIf="form.get('birthDate')?.invalid && form.get('birthDate')?.touched" class="text-danger">
+      Data de nascimento é obrigatória.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="gender" class="form-label">Gênero</label>
+    <select
+      mdbSelect
+      class="form-control"
+      id="gender"
+      formControlName="gender"
+      (change)="onGenderChange()">
+      <option value="" disabled>Selecione um gênero</option>
+      <option value="M">Masculino</option>
+      <option value="F">Feminino</option>
+      <option value="O">Outro</option>
+    </select>
+  </div>
+</form>

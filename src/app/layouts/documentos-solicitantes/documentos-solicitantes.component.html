@@ -1,0 +1,55 @@
+<div class="container">
+  <div style="width: 100%; text-align: center;">
+    <h2 style="margin-top: 35px;">Detalhes do Protocolo</h2>
+  </div>
+
+  <div class="section1 mtop">
+    <div  class="section2Wrapper"  >
+      <div class="section2 mtop " style="margin-right: 20px;">
+        <!-- Nome do Visitante -->
+        <div class="mtop">
+          <a>Nome do visitante:</a>
+          <input class="form-control inputbar bg-input" type="text" [value]="protocol?.user?.name || ''" readonly />
+        </div>
+  
+        <!-- CPF do Visitante -->
+        <div class="mtop">
+          <a>CPF do visitante:</a>
+          <input class="form-control inputbar bg-input" type="text" [value]="protocol?.user?.document || ''" readonly />
+        </div>
+  
+        <!-- Nome do Visitado -->
+        <div class="mtop">
+          <a>Nome do visitado:</a>
+          <input class="form-control inputbar bg-input" type="text" [value]="reqInfo?.name_visited || ''" readonly />
+        </div>
+      </div>
+  
+      <div class="section2 mtop" style="margin-left: 20px;">
+        <!-- Protocolo -->
+        <div class="mtop">
+          <a>Protocolo:</a>
+          <input class="form-control inputbar bg-input" type="text" [value]="protocol?.id || ''" readonly />
+        </div>
+  
+        <!-- Telefone do Visitante -->
+        <div class="mtop">
+          <a>Telefone do visitante:</a>
+          <input class="form-control inputbar bg-input" type="text" [value]="protocol?.req_info?.cellphone|| ''"
+            readonly />
+        </div>
+  
+        <!-- CPF/RNE do Visitado -->
+        <div class="mtop">
+          <a>CPF / RNE do visitado:</a>
+          <input class="form-control inputbar bg-input" type="text" [value]="protocol?.req_info?.cpf_rne || ''"
+            readonly />
+        </div>
+      </div>
+    </div>
+    <div>
+      <button (click)="aceitarProtocolo()" class="btn btn-success" style="margin-right: 20px;">APROVAR</button>
+      <button (click)="rejeitarProtocolo()" class="btn btn-warning" style="margin-left: 20px;">RECUSAR</button>
+    </div>
+  </div>
+</div>

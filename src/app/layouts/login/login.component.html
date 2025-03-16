@@ -1,0 +1,40 @@
+<div class="card">
+  <div class=""></div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-4"></div>
+
+    <div class="col-4">
+      <div class="card">
+        <div class="card-body">
+          <h2>Realizar Login</h2>
+          <form>
+            <mdb-form-control class="mb-4">
+              <input
+                mdbInput type="text"
+                id="form1Example1"
+                class="form-control"
+                [(ngModel)]="document"
+                [ngModelOptions]="{ standalone: true }" />
+
+              <label mdbLabel class="form-label" for="form1Example1">CPF ou RNE</label>
+
+            </mdb-form-control>
+
+            <mdb-form-control class="mb-4">
+              <input mdbInput type="password" id="form1Example2" class="form-control" [(ngModel)]="password"
+                [ngModelOptions]="{ standalone: true }" />
+              <label id="senha" mdbLabel class="form-label" for="form1Example2">Senha</label>
+            </mdb-form-control>
+          </form>
+
+          <button type="button" class="btn btn-primary" style="background-color: rgb(134, 181, 86);" (click)="onLogin()">Acessar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4"></div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="container">
+  <h2 style="margin-left: 510px;">Upload de Arquivos</h2>
+
+  <!-- Link para abrir o PDF -->
+  <a href="/docs/meuDocumento.pdf" target="_blank" class="btn btn-link" style="margin-left: 550px;">Relação de Documento</a>
+
+  <form [formGroup]="form" (ngSubmit)="handleRegisterProtocols()">
+
+    <div class="form-group">
+      <label for="files">RG</label>
+      <input type="file" id="files" class="form-control" (change)="onFileSelected($event)" multiple>
+      <span class="text-warning">
+        Não precisa adicionar documentos por enquanto, apenas vá no botão enviar para mandar o seu requerimento
+      </span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3" style="background-color: rgb(134, 181, 86);">Enviar</button>
+  </form>
+</div>

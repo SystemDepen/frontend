@@ -1,0 +1,38 @@
+.foter {
+    background-color: #000000;
+
+    height: 70px;
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display:flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 30px;
+    justify-content: center;
+}
+
+p{
+    color: #FFFFFF;
+    margin-left: 42px;
+}
+
+
+.image{
+    border-right: 1px solid #FFFFFF;
+    padding-right: 30px;
+    height: 50px;
+}
+
+.titulo{
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 20px;
+    color: #FFFFFF;
+}
+
+.direitos{
+    margin-left: 20px;
+    color: #FFFFFF;
+}

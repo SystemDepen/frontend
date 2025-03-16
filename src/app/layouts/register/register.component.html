@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2>Realizar Cadastro</h2>
+          <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+            <mdb-form-control class="mb-4">
+              <input
+                mdbInput
+                type="text"
+                id="fullName"
+                class="form-control"
+                formControlName="name"
+                required
+              />
+              <label mdbLabel class="form-label" for="fullName"
+                >Nome Completo</label
+              >
+            </mdb-form-control>
+
+            <mdb-form-control class="mb-4">
+              <input
+                mdbInput
+                type="text"
+                id="document"
+                class="form-control"
+                formControlName="document"
+                required
+              />
+              <label mdbLabel class="form-label" for="document"
+                >CPF ou RNE</label
+              >
+            </mdb-form-control>
+
+            <mdb-form-control class="mb-4">
+              <input
+                mdbInput
+                type="email"
+                id="email"
+                class="form-control"
+                formControlName="email"
+                required
+              />
+              <label mdbLabel class="form-label" for="email">Email</label>
+            </mdb-form-control>
+
+            <mdb-form-control class="mb-4">
+              <input
+                mdbInput
+                type="password"
+                id="password"
+                class="form-control"
+                formControlName="password"
+                required
+              />
+              <label mdbLabel class="form-label" for="password">Senha</label>
+            </mdb-form-control>
+
+            <div class="mb-4">
+              <app-date-picker
+                (birthDateChange)="onBirthDateChange($event)"
+                (genderChange)="onGenderChange($event)"
+              ></app-date-picker>
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="false"
+            >
+              Cadastrar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

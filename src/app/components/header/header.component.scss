@@ -1,0 +1,56 @@
+.opcao{
+    font-size: 25px;
+    color: white;
+    font-weight: 300;
+    font-style: italic;
+}
+
+nav{
+    background-color: #000000;
+}
+
+.botao{
+    width: 110px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.logo_header{
+    width: 55px;
+    height: 70px;
+    margin-left: 15px;
+    position: absolute;
+}
+
+.entrar{
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+}
+
+.user {
+  width: 45%;
+  margin-right: 15px;
+}
+
+.logout{
+    margin-right: 30px;
+    width: 45%;
+}
+.register {
+  margin: 10px;
+  width: 130px;
+
+}
+
+.botoes{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.solicitacoes{
+    margin-right: 15px;
+    font-size: 77%;
+    justify-content: center;
+}
