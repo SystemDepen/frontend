@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -11,17 +11,23 @@ export class ReqDocsService {
   http = inject(HttpClient);
   API = environment.API_URI + 'documents';
 
-  constructor() { }
+  constructor() {}
 
-  save(res: ReqDocs): Observable<ReqDocs> {
-    console.log(res)
+  save(
+    userId: number,
+    documentType: string,
+    files: File[]
+  ): Observable<ReqDocs> {
     const url = `${this.API}/`;
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'secret-key':
-        'BvPHGM8C0ia4uOuxxqPD5DTbWC9F9TWvPStp3pb7ARo0oK2mJ3pd3YG4lxA9i8bj6OTbadwezxgeEByY',
+    const formData = new FormData();
+
+    formData.append('userId', userId.toString());
+    formData.append('documentType', documentType);
+
+    files.forEach((file) => {
+      formData.append('files', file); // mesma chave usada no @RequestParam("files")
     });
-    return this.http.post<ReqDocs>(url + 'upload', res, { headers });
+    return this.http.post<ReqDocs>(url + 'upload', formData);
   }
 }

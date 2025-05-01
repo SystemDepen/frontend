@@ -1,6 +1,4 @@
-import { Observable } from "rxjs";
 import { Usuario } from "../auth/usuario";
-import { Register } from "./register";
 import { reqCamp } from "./req_camps";
 
 export class Protocols {
@@ -36,8 +34,9 @@ export class RequerimentoInfo {
 }
 
 export class Document {
-  title!: string; // Título do documento
-  fileUrl!: string; // URL
+  userId!: string; // Título do documento
+  files!: File[]; // URL
+  documentType!: string;
 }
 
 export class Admin {

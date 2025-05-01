@@ -4,16 +4,26 @@
   <!-- Link para abrir o PDF -->
   <a href="/docs/meuDocumento.pdf" target="_blank" class="btn btn-link" style="margin-left: 550px;">Relação de Documento</a>
 
-  <form [formGroup]="form" (ngSubmit)="handleRegisterProtocols()">
 
-    <div class="form-group">
-      <label for="files">RG</label>
-      <input type="file" id="files" class="form-control" (change)="onFileSelected($event)" multiple>
-      <span class="text-warning">
-        Não precisa adicionar documentos por enquanto, apenas vá no botão enviar para mandar o seu requerimento
-      </span>
-    </div>
+  <form [formGroup]="form" (ngSubmit)="handleRegisterProtocols()" enctype="multipart/form-data" class="p-4 border rounded">
+  <div class="mb-3">
+    <label for="documentType" class="form-label">Tipo de Documento</label>
+    <select id="documentType" formControlName="documentType" class="form-select">
+      <option value="CPF">CPF</option>
+      <option value="RG">RG</option>
+      <option value="grauP">Grau de Parentesco</option>
+      <option value="foto">Foto</option>
+      <option value="endereco">Endereço</option>
+      <option value="antCriminais">Antecedentes Criminais</option>
+    </select>
+  </div>
 
-    <button type="submit" class="btn btn-primary mt-3" style="background-color: rgb(134, 181, 86);">Enviar</button>
-  </form>
+  <div class="mb-3">
+    <label for="fileInput" class="form-label">Selecione Arquivo(s)</label>
+    <input type="file" id="fileInput" (change)="onFileChange($event)" class="form-control" multiple>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
 </div>
