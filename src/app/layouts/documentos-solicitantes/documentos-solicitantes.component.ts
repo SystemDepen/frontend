@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Protocols } from '../../models/protocols';
-import { ProtocolsService } from '../../services/protocol.service';  // Serviço para atualizar protocolo
-import { reqCamp } from '../../models/req_camps';
 import Swal from 'sweetalert2';
+import { Protocols } from '../../models/protocols';
+import { reqCamp } from '../../models/req_camps';
+import { ReqDocsService } from '../../services/documents/req_docs.service';
+import { ProtocolsService } from '../../services/protocol.service';
 
 @Component({
   selector: 'app-documentos-solicitantes',
@@ -11,12 +12,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./documentos-solicitantes.component.scss']
 })
 export class DocumentosSolicitantesComponent implements OnInit {
-  protocol!: Protocols;  // Protocolo a ser atualizado
+  protocol!: Protocols;
   reqInfo!: reqCamp;
 
   constructor(
     private router: Router,
-    private protocolsService: ProtocolsService  // Serviço para atualizar protocolo
+    private protocolsService: ProtocolsService,
+    private documentoService: ReqDocsService
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +30,15 @@ export class DocumentosSolicitantesComponent implements OnInit {
       console.log(this.protocol.req_info);
       this.reqInfo = this.protocol.req_info;
       console.log(this.reqInfo)
+
+      const token = localStorage.getItem('token');
+      // if (token) {
+      //   const userId = Number(jwtDecode<JwtCustomPayload>(token).id);
+      //   this.documentoService.getDocumentsByUser(userId).subscribe({
+      //     next: (docs) => (this.documents = docs),
+      //     error: (err) => console.error('Erro ao buscar documentos', err),
+      //   });
+      // }
     } else {
       console.error('Nenhum protocolo recebido.');
       this.router.navigate(['/tabela-solicitantes']); // Redireciona caso não haja protocolo

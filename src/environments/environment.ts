@@ -1,6 +1,6 @@
-export const environment = {
-  API_URI: 'http://localhost:8080/api/v1/',
-};
+// export const environment = {
+//   API_URI: 'http://localhost:8080/api/v1/',
+// };
 
 //Ip da faculdade
 // export const environment = {
@@ -8,6 +8,6 @@ export const environment = {
 // };
 
 //Ip fixo
-// export const environment = {
-//   API_URI: 'http://192.168.1.50:8080/api/v1/',
-// };
+export const environment = {
+  API_URI: 'http://100.67.84.55:8080/api/v1/',
+};

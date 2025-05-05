@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { Document } from '../../models/document';
 import { ReqDocs } from '../../models/req_docs';
 
 @Injectable({
@@ -29,5 +30,12 @@ export class ReqDocsService {
       formData.append('files', file); // mesma chave usada no @RequestParam("files")
     });
     return this.http.post<ReqDocs>(url + 'upload', formData);
+  }
+
+  getDocumentsByUser(userId: number): Observable<Document[]> {
+    const url = `${this.API}/`;
+    const params = new HttpParams().set('userId', userId);
+
+    return this.http.get<Document[]>(`${url}/list`, { params });
   }
 }

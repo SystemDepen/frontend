@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
@@ -37,6 +38,8 @@ export class SendForm2Component {
   req: number = 0;
   form: FormGroup;
   isDropdownOpen = false; // Variável para controlar o estado do dropdown
+  router = inject(Router);
+
   constructor(
     private protocolService: ProtocolsService,
     private userService: RegisterService,
@@ -102,7 +105,12 @@ export class SendForm2Component {
             .subscribe({
               next: (uploadResponse) => {
                 console.log('Upload ok:', uploadResponse);
-
+                Swal.fire({
+                  title: 'Sucesso!',
+                  text: 'Documento enviado com sucesso',
+                  icon: 'success',
+                  confirmButtonText: 'Ok',
+                });
                 // 2. Agora envia o protocolo
                 const protocol: Protocols = {
                   created_at: new Date().toISOString(),
@@ -151,8 +159,11 @@ export class SendForm2Component {
     }
   }
 
-
   onFileChange(event: any) {
     this.selectedFiles = Array.from(event.target.files);
+  }
+
+  handleNavigateStatus() {
+    this.router.navigate(['/send-documents']);
   }
 }
