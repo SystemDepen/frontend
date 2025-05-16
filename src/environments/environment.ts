@@ -1,5 +1,7 @@
 // export const environment = {
 //   API_URI: 'http://localhost:8080/api/v1/',
+//   KEYCLOAK_URI:
+//     'https://backend:8443/realms/projeto-mensal/protocol/openid-connect/token',
 // };
 
 //Ip da faculdade
@@ -9,5 +11,8 @@
 
 //Ip fixo
 export const environment = {
-  API_URI: 'http://100.67.84.55:8080/api/v1/',
+  API_URI: 'https://backend.local.sysdepen.com.br:9446',
+  KEYCLOAK_URI:
+    'https://backend.local.sysdepen.com.br:8443/realms/projeto-mensal/protocol/openid-connect/token',
 };
+

@@ -7,7 +7,7 @@ import { Usuario } from '../../auth/usuario';
   providedIn: 'root',
 })
 export class RegisterService {
-  private readonly API = environment.API_URI + 'usuario';
+  private readonly API = environment.API_URI + '/v1/usuario';
   private http = inject(HttpClient);
 
   constructor() {}
@@ -29,25 +29,33 @@ export class RegisterService {
       })
     );
   }
-  
+
+  findUserByDocument(document: string): Observable<Usuario> {
+    return this.http
+      .get<Usuario>(`${this.API}/findByDocument/${document}`)
+      .pipe(
+        catchError((err) => {
+          return throwError(() => err.error);
+        })
+      );
+  }
 
   handleRegister(res: Usuario, role: number): Observable<string> {
     const registerData: Usuario = {
       name: res.name,
       document: res.document,
       email: res.email,
-      password: res.password,
+      // password: res.password,
       gender: res.gender,
       date_born: res.date_born,
       role,
       created_at: new Date(),
       updated_at: new Date(),
-      protocols: []
+      protocols: [],
     };
 
-
     return this.http
-      .post<string>(`${this.API}/save`, registerData, {
+      .post<string>(`${this.API}/save/`, registerData, {
         responseType: 'text' as 'json',
       })
       .pipe(

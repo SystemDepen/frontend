@@ -9,10 +9,9 @@ import { reqCamp } from '../models/req_camps';
 })
 export class ReqCampService {
   http = inject(HttpClient);
-  API = environment.API_URI + 'req_camp';
+  API = environment.API_URI + '/v1/req_camp';
 
-  constructor() { }
-
+  constructor() {}
 
   findReqById(id: number): Observable<reqCamp[]> {
     return this.http.get<reqCamp[]>(`${this.API}/${id}`).pipe(
@@ -22,10 +21,8 @@ export class ReqCampService {
     );
   }
 
-
   save(res: reqCamp): Observable<reqCamp> {
     const url = `${this.API}/save`;
-
 
     return this.http.post<reqCamp>(url, res);
   }

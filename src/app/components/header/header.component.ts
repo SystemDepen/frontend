@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RegisterService } from '../../services/register/register.service';
+import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { Usuario } from '../../auth/usuario';
-import { jwtDecode } from 'jwt-decode';
+import { RegisterService } from '../../services/register/register.service';
 
 @Component({
   selector: 'app-header',
@@ -14,9 +14,9 @@ import { jwtDecode } from 'jwt-decode';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  user: any;                    // Nome do usuário logado
-  userLogged: boolean = false;  // Define se o usuário está logado
-  isAdmin: boolean = false;     // Define se o usuário é administrador
+  user: any; // Nome do usuário logado
+  userLogged: boolean = false; // Define se o usuário está logado
+  isAdmin: boolean = false; // Define se o usuário é administrador
   userCurrent: Usuario | null = null;
 
   constructor(public userService: RegisterService, private router: Router) {}
@@ -38,7 +38,6 @@ export class HeaderComponent implements OnInit {
       this.userLogged = true;
     }
   }
-  
 
   // Busca os dados do usuário no serviço
   findUser(id: number): Observable<Usuario> {

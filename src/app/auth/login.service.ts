@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { jwtDecode, JwtPayload } from "jwt-decode";
+import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Login } from './login';
@@ -10,7 +10,7 @@ import { Usuario } from './usuario';
 })
 export class LoginService {
   http = inject(HttpClient);
-  API = `${environment.API_URI}login/logar`;
+  API = `${environment.API_URI}/v1/login/logar`;
 
   constructor() {}
 
