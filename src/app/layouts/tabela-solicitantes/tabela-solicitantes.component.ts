@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ProtocolsService } from '../../services/protocol.service';
-import { Protocols } from '../../models/protocols';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchBarComponent } from '../../components/search-bar/search-bar.component';
+import { Protocols } from '../../models/protocols';
+import { ProtocolsService } from '../../services/protocol.service';
 
 @Component({
   selector: 'app-tabela-solicitantes',
@@ -20,20 +20,24 @@ export class TabelaSolicitantesComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadProtocols();
+    console.log('teste')
   }
 
   loadProtocols(): void {
     this.protocolsService.findAll().subscribe(
       (data) => {
         this.protocols = data.filter(protocol => protocol.status === 0); // Filtra apenas os protocolos com status 0
+        console.log(data);
+
         this.filteredProtocols = this.protocols; // Inicializa os protocolos filtrados
       },
       (error) => {
         console.error('Erro ao carregar protocolos:', error);
       }
     );
+
   }
-  
+
 
   handleProtocol(protocol: Protocols): void {
     console.log('Protocol enviado:', protocol); // Log do protocolo

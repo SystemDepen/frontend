@@ -26,22 +26,27 @@ export class HeaderComponent implements OnInit {
     if (storedUser) {
       const decodedToken = jwtDecode<any>(storedUser);
       console.log('Token decodificado:', decodedToken); // Verifique aqui
-      const id = Number(decodedToken.id);
-      this.findUser(id).subscribe((user) => {
-        console.log('Usuário retornado do serviço:', user); // Confirme o retorno do usuário
-        this.userCurrent = user;
-        this.user = user.name;
-        this.isAdmin = Number(user.role) === 1;
+      const document = decodedToken.preferred_username;
+      // this.findUser(document).subscribe((user) => {
+      //   console.log('Usuário retornado do serviço:', user); // Confirme o retorno do usuário
+      //   this.userCurrent = user;
+      //   this.user = user.name;
+      //   this.isAdmin = Number(user.role) === 1;
 
-        console.log('isAdmin:', this.isAdmin); // Confirme o valor de isAdmin
-      });
+      //   console.log('isAdmin:', this.isAdmin); // Confirme o valor de isAdmin
+      // });
+      this.userCurrent = decodedToken;
+      this.user = decodedToken.name;
+      // this.isAdmin = Number(decodedToken.role) === 1;
+      const roles: string[] = decodedToken.realm_access?.roles || [];
+      this.isAdmin = roles.some((role) => role === 'depen-admin');
       this.userLogged = true;
     }
   }
 
   // Busca os dados do usuário no serviço
-  findUser(id: number): Observable<Usuario> {
-    return this.userService.findSingleUserById(id);
+  findUser(document: string): Observable<Usuario> {
+    return this.userService.findUserByDocument(document);
   }
 
   // Função de logout

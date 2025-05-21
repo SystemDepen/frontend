@@ -7,7 +7,7 @@ import { Usuario } from '../../auth/usuario';
   providedIn: 'root',
 })
 export class RegisterService {
-  private readonly API = environment.API_URI + '/v1/usuario';
+  private readonly API = environment.API_URI + '/api/v1/usuario';
   private http = inject(HttpClient);
 
   constructor() {}
@@ -45,7 +45,7 @@ export class RegisterService {
       name: res.name,
       document: res.document,
       email: res.email,
-      // password: res.password,
+      password: res.password,
       gender: res.gender,
       date_born: res.date_born,
       role,
@@ -55,7 +55,7 @@ export class RegisterService {
     };
 
     return this.http
-      .post<string>(`${this.API}/save/`, registerData, {
+      .post<string>(`${this.API}/save`, registerData, {
         responseType: 'text' as 'json',
       })
       .pipe(

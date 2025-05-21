@@ -27,10 +27,10 @@ export class RegisterComponent {
       name: new FormControl('', Validators.required),
       document: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      // password: new FormControl('', [
-      //   Validators.required,
-      //   Validators.minLength(6),
-      // ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
       birthDate: new FormControl('', Validators.required),
       gender: new FormControl('', Validators.required),
     });
@@ -84,12 +84,12 @@ export class RegisterComponent {
       errors.push('Email inválido');
     }
 
-    // Verificando campo 'password'
-    // if (this.registerForm.get('password')?.hasError('required')) {
-    //   errors.push('Senha é obrigatória');
-    // } else if (this.registerForm.get('password')?.hasError('minlength')) {
-    //   errors.push('A senha deve ter no mínimo 6 caracteres');
-    // }
+   // Verificando campo 'password'
+    if (this.registerForm.get('password')?.hasError('required')) {
+      errors.push('Senha é obrigatória');
+    } else if (this.registerForm.get('password')?.hasError('minlength')) {
+      errors.push('A senha deve ter no mínimo 6 caracteres');
+    }
 
     // Verificando campo 'birthDate'
     if (this.registerForm.get('birthDate')?.hasError('required')) {

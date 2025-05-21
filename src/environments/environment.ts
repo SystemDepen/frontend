@@ -11,7 +11,7 @@
 
 //Ip fixo
 export const environment = {
-  API_URI: 'https://backend.local.sysdepen.com.br:9446',
+  API_URI: 'http://backend.local.sysdepen.com.br:8080',
   KEYCLOAK_URI:
     'https://backend.local.sysdepen.com.br:8443/realms/projeto-mensal/protocol/openid-connect/token',
 };

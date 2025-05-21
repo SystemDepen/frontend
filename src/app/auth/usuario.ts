@@ -1,7 +1,8 @@
 export class Usuario {
+  id?: number;
   name!: string;
   document!: string;
-  // password!: string;
+   password!: string;
   email!: string;
   gender!: string;
   date_born!: Date;

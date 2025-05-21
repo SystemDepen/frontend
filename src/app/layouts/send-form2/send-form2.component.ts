@@ -74,10 +74,8 @@ export class SendForm2Component {
   }
 
   // Função para buscar o usuário no backend
-  findUser(id: number): Observable<Usuario[]> {
-    var user = this.userService.findUserById(id);
-    console.log(user);
-    return user;
+  findUser(document: string): Observable<Usuario> {
+    return this.userService.findUserByDocument(document);
   }
 
   // Função para buscar os requerimentos no backend
@@ -91,15 +89,17 @@ export class SendForm2Component {
     let userCurrent: Usuario | any = null;
     const storedUser = localStorage.getItem('token');
     if (storedUser) {
-      const decodedToken = jwtDecode<JwtCustomPayload>(storedUser);
-      const id = Number(decodedToken.id);
-      this.userId = id; // <-- importante para o upload usar!
+      const decodedToken = jwtDecode<any>(storedUser);
+      const document = decodedToken.preferred_username;
+       // <-- importante para o upload usar!
 
       const selectedType = this.form.get('documentType')?.value;
 
-      this.findUser(id).subscribe({
+      this.findUser(document).subscribe({
         next: (user) => {
           // 1. Envia o documento
+          console.log(user)
+          this.userId = Number(user?.id);
           this.documentService
             .save(this.userId, selectedType, this.selectedFiles)
             .subscribe({
@@ -116,7 +116,7 @@ export class SendForm2Component {
                   created_at: new Date().toISOString(),
                   updated_at: new Date().toISOString(),
                   user: {
-                    id: userCurrent.id,
+                    id: this.userId,
                   },
                   admin: null,
                   doc: null, // << não envia arquivos aqui, pois já foram enviados!

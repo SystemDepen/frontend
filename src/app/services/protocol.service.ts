@@ -9,7 +9,7 @@ import { Protocols } from '../models/protocols';
 })
 export class ProtocolsService {
   private http = inject(HttpClient);
-  private API = `${environment.API_URI}/v1/protocols`;
+  private API = `${environment.API_URI}/api/v1/protocols`;
 
   constructor() {}
 
