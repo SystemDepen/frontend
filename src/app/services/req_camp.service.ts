@@ -9,7 +9,7 @@ import { reqCamp } from '../models/req_camps';
 })
 export class ReqCampService {
   http = inject(HttpClient);
-  API = environment.API_URI + '/api/v1/req_camp';
+  API = environment.API_URI + 'req_camp';
 
   constructor() {}
 

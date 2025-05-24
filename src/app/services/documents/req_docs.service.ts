@@ -10,7 +10,7 @@ import { ReqDocs } from '../../models/req_docs';
 })
 export class ReqDocsService {
   http = inject(HttpClient);
-  API = environment.API_URI + '/api/v1/documents';
+  API = environment.API_URI + 'documents';
 
   constructor() {}
 

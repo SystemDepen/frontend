@@ -10,7 +10,7 @@ import { Usuario } from './usuario';
 })
 export class LoginService {
   http = inject(HttpClient);
-  API = `${environment.API_URI}/api/v1/login/logar`;
+  API = `${environment.API_URI}login/logar`;
 
   constructor() {}
 

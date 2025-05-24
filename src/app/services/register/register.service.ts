@@ -7,7 +7,7 @@ import { Usuario } from '../../auth/usuario';
   providedIn: 'root',
 })
 export class RegisterService {
-  private readonly API = environment.API_URI + '/api/v1/usuario';
+  private readonly API = environment.API_URI + 'usuario';
   private http = inject(HttpClient);
 
   constructor() {}
