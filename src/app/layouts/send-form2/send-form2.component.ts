@@ -100,56 +100,35 @@ export class SendForm2Component {
           // 1. Envia o documento
           console.log(user)
           this.userId = Number(user?.id);
-          this.documentService
-            .save(this.userId, selectedType, this.selectedFiles)
-            .subscribe({
-              next: (uploadResponse) => {
-                console.log('Upload ok:', uploadResponse);
-                Swal.fire({
-                  title: 'Sucesso!',
-                  text: 'Documento enviado com sucesso',
-                  icon: 'success',
-                  confirmButtonText: 'Ok',
-                });
-                // 2. Agora envia o protocolo
-                const protocol: Protocols = {
-                  created_at: new Date().toISOString(),
-                  updated_at: new Date().toISOString(),
-                  user: {
-                    id: this.userId,
-                  },
-                  admin: null,
-                  doc: null, // << não envia arquivos aqui, pois já foram enviados!
-                  req_info: { id: this.req },
-                  status: 0,
-                };
 
-                this.protocolService.save(protocol).subscribe({
-                  next: (response) => {
-                    console.log('Cadastrado com sucesso:', response);
-                    alert('Cadastrado com sucesso!');
-                  },
-                  error: (error) => {
-                    console.error('Erro ao cadastrar protocolo:', error);
-                    Swal.fire({
-                      title: 'Erro',
-                      text: 'Erro ao cadastrar protocolo',
-                      icon: 'error',
-                      confirmButtonText: 'Ok',
-                    });
-                  },
-                });
-              },
-              error: (err) => {
-                console.error('Erro ao fazer upload:', err);
-                Swal.fire({
-                  title: 'Erro',
-                  text: 'Erro ao enviar documento.',
-                  icon: 'error',
-                  confirmButtonText: 'Ok',
-                });
-              },
-            });
+          const protocol: Protocols = {
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+            user: {
+              id: this.userId,
+            },
+            admin: null,
+            doc: null, // << não envia arquivos aqui, pois já foram enviados!
+            req_info: { id: this.req },
+            status: 0,
+          };
+
+
+          this.protocolService.save(protocol).subscribe({
+            next: (response) => {
+              console.log('Cadastrado com sucesso:', response);
+              alert('Cadastrado com sucesso!');
+            },
+            error: (error) => {
+              console.error('Erro ao cadastrar protocolo:', error);
+              Swal.fire({
+                title: 'Erro',
+                text: 'Erro ao cadastrar protocolo',
+                icon: 'error',
+                confirmButtonText: 'Ok',
+              });
+            },
+          });
         },
         error: (error) => {
           console.error('Erro ao buscar usuário:', error);
