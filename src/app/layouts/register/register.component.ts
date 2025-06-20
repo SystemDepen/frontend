@@ -5,6 +5,8 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import Swal from 'sweetalert2';
 import { DatePickerComponent } from '../../components/date-picker/date-picker.component';
 import { RegisterService } from '../../services/register/register.service';
+import { UsuarioRegisterDTO } from '../../auth/usuario-register.dto';
+
 
 @Component({
   selector: 'app-register',
@@ -37,32 +39,44 @@ export class RegisterComponent {
     console.log(this.registerForm)
   }
 
-  onRegister() {
-    if (this.registerForm.valid) {
-      const userCurrent = this.registerForm.value;
-      this.register.handleRegister(userCurrent, 0).subscribe({
-        next: (response) => {
-          Swal.fire({
-            title: 'Sucesso!',
-            text: 'Cadastro realizado com sucesso',
-            icon: 'success',
-            confirmButtonText: 'Seguir para o Login',
-          });
-          this.router.navigate(['/sign-in']);
-        },
-        error: (error) => {
-          Swal.fire({
-            title: 'Erro',
-            text: 'Falha ao realizar cadastro',
-            icon: 'error',
-            confirmButtonText: 'Tente novamente',
-          });
-        },
-      });
-    } else {
-      this.handleFormErrors();
-    }
+onRegister() {
+  if (this.registerForm.valid) {
+    const formValue = this.registerForm.value;
+
+    const userMapped: UsuarioRegisterDTO = {
+      nameVisited: formValue.name,
+      cpfRne: formValue.document,
+      email: formValue.email,
+      password: formValue.password,
+      gender: formValue.gender,
+      dateBorn: formValue.birthDate,
+      role: 0 // ou outro valor se precisar
+    };
+
+    this.register.handleRegister(userMapped).subscribe({
+      next: () => {
+        Swal.fire({
+          title: 'Sucesso!',
+          text: 'Cadastro realizado com sucesso',
+          icon: 'success',
+          confirmButtonText: 'Seguir para o Login',
+        });
+        this.router.navigate(['/sign-in']);
+      },
+      error: () => {
+        Swal.fire({
+          title: 'Erro',
+          text: 'Falha ao realizar cadastro',
+          icon: 'error',
+          confirmButtonText: 'Tente novamente',
+        });
+      },
+    });
+  } else {
+    this.handleFormErrors();
   }
+}
+
 
   handleFormErrors() {
     const errors: string[] = [];

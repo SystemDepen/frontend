@@ -3,6 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Usuario } from '../../auth/usuario';
+import { UsuarioRegisterDTO } from '../../auth/usuario-register.dto';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -40,28 +42,16 @@ export class RegisterService {
       );
   }
 
-  handleRegister(res: Usuario, role: number): Observable<string> {
-    const registerData: Usuario = {
-      name: res.name,
-      document: res.document,
-      email: res.email,
-      password: res.password,
-      gender: res.gender,
-      date_born: res.date_born,
-      role,
-      created_at: new Date(),
-      updated_at: new Date(),
-      protocols: [],
-    };
-
-    return this.http
-      .post<string>(`${this.API}/save`, registerData, {
-        responseType: 'text' as 'json',
+handleRegister(data: UsuarioRegisterDTO): Observable<string> {
+  return this.http
+    .post<string>(`${this.API}/save`, data, {
+      responseType: 'text' as 'json',
+    })
+    .pipe(
+      catchError((error) => {
+        return throwError(() => error.error);
       })
-      .pipe(
-        catchError((error) => {
-          return throwError(() => error.error);
-        })
-      );
-  }
+    );
+}
+
 }
