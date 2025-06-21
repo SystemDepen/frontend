@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import { IBGEService } from '../../services/bge.service';
-import { Router } from '@angular/router';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import Swal from 'sweetalert2';
 import { IBGECityResponse, IBGEUFResponse } from '../../models/IBGEUF';
 import { reqCamp } from '../../models/req_camps';
+import { IBGEService } from '../../services/bge.service';
 import { LocalStorageService } from '../../services/localStorage.service';
 import { ReqCampService } from '../../services/req_camp.service';
 
@@ -106,15 +106,15 @@ export class formComponent implements OnInit {
 
       const requerimentoInfo: reqCamp = {
         id: null,
-        name_visited: data.name_visited,
-        cpf_rne: data.cpf_rne,
-        type_visitation: data.type_visitation,
+        nameVisited: data.nameVisited,
+        cpfRne: data.cpfRne,
+        typeVisitation: data.typeVisitation,
         cellphone: data.cellphone,
         state: data.state,
         city: data.city,
         district: data.district,
         street: data.street,
-        number_house: data.number_house,
+        numberHouse: data.numberHouse,
       };
 
       this.req_campService.save(requerimentoInfo).subscribe({

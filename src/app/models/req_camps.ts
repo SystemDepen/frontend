@@ -1,14 +1,14 @@
 export class reqCamp {
   id!: number | null;
-  name_visited!: string;
-  cpf_rne!: string;
-  type_visitation!: string;
+  nameVisited!: string;
+  cpfRne!: string;
+  typeVisitation!: string;
   cellphone!: string;
   state!: string;
   city!: string;
   district!: string;
   street!: string;
-  number_house!: string;
+  numberHouse!: string;
 }
 
 // {

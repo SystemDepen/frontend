@@ -11,34 +11,34 @@
           <a>Nome do visitante:</a>
           <input class="form-control inputbar bg-input" type="text" [value]="protocol?.user?.name || ''" readonly />
         </div>
-  
+
         <!-- CPF do Visitante -->
         <div class="mtop">
           <a>CPF do visitante:</a>
           <input class="form-control inputbar bg-input" type="text" [value]="protocol?.user?.document || ''" readonly />
         </div>
-  
+
         <!-- Nome do Visitado -->
         <div class="mtop">
           <a>Nome do visitado:</a>
-          <input class="form-control inputbar bg-input" type="text" [value]="reqInfo?.name_visited || ''" readonly />
+          <input class="form-control inputbar bg-input" type="text" [value]="reqInfo?.nameVisited || ''" readonly />
         </div>
       </div>
-  
+
       <div class="section2 mtop" style="margin-left: 20px;">
         <!-- Protocolo -->
         <div class="mtop">
           <a>Protocolo:</a>
           <input class="form-control inputbar bg-input" type="text" [value]="protocol?.id || ''" readonly />
         </div>
-  
+
         <!-- Telefone do Visitante -->
         <div class="mtop">
           <a>Telefone do visitante:</a>
           <input class="form-control inputbar bg-input" type="text" [value]="protocol?.req_info?.cellphone|| ''"
             readonly />
         </div>
-  
+
         <!-- CPF/RNE do Visitado -->
         <div class="mtop">
           <a>CPF / RNE do visitado:</a>
